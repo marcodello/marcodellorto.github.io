@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marco Dell’Orto — Project Portfolio</title>
+  <meta name="description" content="Engineering project portfolio: design, analysis, and real-world problem solving." />
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --card:#121a2a;
+      --text:#e9eefc;
+      --muted:#b8c3e0;
+      --line:rgba(255,255,255,.10);
+      --accent:#7aa2ff;
+      --accent2:#6ee7b7;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(122,162,255,.20), transparent 60%),
+                  radial-gradient(900px 600px at 80% 20%, rgba(110,231,183,.15), transparent 60%),
+                  var(--bg);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .container{max-width:1100px; margin:0 auto; padding:24px}
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,23,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+    }
+    .brand span{font-weight:700; letter-spacing:.2px}
+    nav ul{
+      list-style:none; display:flex; gap:14px; padding:0; margin:0;
+    }
+    nav a{
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--muted);
+      border:1px solid transparent;
+    }
+    nav a:hover{
+      color:var(--text);
+      border-color:var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .hero{
+      padding:40px 0 10px;
+      display:grid;
+      grid-template-columns: 1.4fr .6fr;
+      gap:22px;
+      align-items:start;
+    }
+    .card{
+      background: rgba(18,26,42,.72);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main{padding:26px}
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 12px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    h1{
+      margin:14px 0 8px;
+      font-size: 44px;
+      letter-spacing: -0.6px;
+      line-height: 1.05;
+    }
+    .role{
+      color: var(--muted);
+      font-size: 18px;
+      margin: 0 0 16px;
+    }
+    .cta{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 14px;
+      border-radius: 14px;
+      text-decoration:none;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 600;
+    }
+    .btn:hover{background: rgba(255,255,255,.07)}
+    .btn.primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, rgba(122,162,255,.95), rgba(110,231,183,.95));
+      color: #0b0f17;
+    }
+    .btn.primary:hover{filter: brightness(1.02)}
+    .hero-side{padding:22px}
+    .mini{
+      display:grid;
+      gap:12px;
+    }
+    .mini .item{
+      padding:14px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .mini .label{color:var(--muted); font-size:13px; margin-bottom:6px}
+    .mini .value{font-weight:700}
+    section{padding:28px 0}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:14px; margin-bottom:14px;
+    }
+    .section-title h2{margin:0; font-size:24px}
+    .section-title p{margin:0; color:var(--muted)}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .project{
+      grid-column: span 6;
+      padding:18px;
+    }
+    .pillrow{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 12px}
+    .pill{
+      font-size:12px;
+      color: var(--muted);
+      padding:6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .project h3{margin:0 0 8px; font-size:18px}
+    .project p{margin:0 0 12px; color:var(--muted)}
+    details{
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:700;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      padding:8px 0;
+    }
+    summary::-webkit-details-marker{display:none}
+    .case{
+      padding:10px 0 2px;
+      display:grid;
+      gap:10px;
+    }
+    .case .block{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding:12px;
+    }
+    .block h4{margin:0 0 6px; font-size:14px; color:var(--text)}
+    .block p, .block ul{margin:0; color:var(--muted); font-size:14px}
+    .block ul{padding-left:18px}
+    .skills{
+      grid-column: span 12;
+      padding:18px;
+    }
+    .cols{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:10px;
+    }
+    .col{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding:12px;
+    }
+    .col h4{margin:0 0 8px; font-size:14px}
+    .col ul{margin:0; padding-left:18px; color:var(--muted)}
+    .about, .contact{
+      grid-column: span 6;
+      padding:18px;
+    }
+    footer{
+      padding:18px 0 34px;
+      color: var(--muted);
+      border-top:1px solid var(--line);
+      margin-top:24px;
+      text-align:center;
+      font-size:14px;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns: 1fr}
+      .project{grid-column: span 12}
+      .about,.contact{grid-column: span 12}
+      .cols{grid-template-columns: 1fr}
+      h1{font-size:36px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Marco Dell’Orto</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="card hero-main">
+        <div class="kicker">Engineering • Design • Analysis • Problem Solving</div>
+        <h1>Project Portfolio</h1>
+        <p class="role">
+          <strong>Marco Dell’Orto</strong> — Engineering Student (Mechanical / Automotive)
+          <br />
+          Project-based learning focused on design, iteration and real-world problem solving.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="https://www.linkedin.com/in/marco-dell%E2%80%99orto-394885291/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <!-- Optional: add your CV PDF file path -->
+          <!-- <a class="btn" href="Marco_DellOrto_CV.pdf" target="_blank" rel="noreferrer">Download CV (PDF)</a> -->
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <aside class="card hero-side">
+        <div class="mini">
+          <div class="item">
+            <div class="label">Focus areas</div>
+            <div class="value">Mechanical Design • Automotive • Aero basics</div>
+          </div>
+          <div class="item">
+            <div class="label">Tools</div>
+            <div class="value">SolidWorks • MATLAB/Python (basic)</div>
+          </div>
+          <div class="item">
+            <div class="label">What you’ll find here</div>
+            <div class="value">Case studies with role, process, outcome</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title">
+        <div>
+          <h2>Selected Projects</h2>
+          <p>Click a project to open the case study.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <!-- Project 1 -->
+        <article class="card project">
+          <h3>RC Car Aerodynamic Design Study</h3>
+          <div class="pillrow">
+            <span class="pill">Personal</span>
+            <span class="pill">SolidWorks</span>
+            <span class="pill">Aero concepts</span>
+            <span class="pill">Iterative design</span>
+          </div>
+          <p>
+            Design and aerodynamic thinking for a small-scale RC car, focusing on drag reduction and stability.
+          </p>
+
+          <details>
+            <summary>
+              View Case Study
+              <span aria-hidden="true">▾</span>
+            </summary>
+            <div class="case">
+              <div class="block">
+                <h4>Context</h4>
+                <p>Personal engineering project focused on small-scale vehicle aerodynamics.</p>
+              </div>
+              <div class="block">
+                <h4>Problem Statement</h4>
+                <p>Reduce drag while maintaining stability at higher speed.</p>
+              </div>
+              <div class="block">
+                <h4>My Role</h4>
+                <p>Sole designer responsible for concept, CAD and analysis/iteration.</p>
+              </div>
+              <div class="block">
+                <h4>Technical Work</h4>
+                <ul>
+                  <li>3D CAD concepting and refinement</li>
+                  <li>Applied aero fundamentals to body shaping</li>
+                  <li>Iteration based on observations/analysis</li>
+                </ul>
+              </div>
+              <div class="block">
+                <h4>Outcome</h4>
+                <p>Final body concept + documented iteration decisions.</p>
+              </div>
+              <div class="block">
+                <h4>Key Learnings</h4>
+                <ul>
+                  <li>Smooth transitions can reduce separation/drag</li>
+                  <li>Iteration beats “one perfect design”</li>
+                  <li>Scaling effects matter in aero assumptions</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card project">
+          <h3>Formula Student — Vehicle Subsystem Design</h3>
+          <div class="pillrow">
+            <span class="pill">Academic / Team</span>
+            <span class="pill">CAD</span>
+            <span class="pill">Calculations</span>
+            <span class="pill">Documentation</span>
+          </div>
+          <p>
+            Contribution to a Formula Student subsystem design with focus on clear requirements and design iteration.
+          </p>
+
+          <details>
+            <summary>
+              View Case Study
+              <span aria-hidden="true">▾</span>
+            </summary>
+            <div class="case">
+              <div class="block">
+                <h4>Context</h4>
+                <p>Team-based university project contributing to an FS vehicle subsystem.</p>
+              </div>
+              <div class="block">
+                <h4>Problem Statement</h4>
+                <p>Design a subsystem meeting constraints (packaging, weight, manufacturability, performance).</p>
+              </div>
+              <div class="block">
+                <h4>My Role</h4>
+                <p>Subsystem contributor: CAD modeling + calculations + technical notes.</p>
+              </div>
+              <div class="block">
+                <h4>Technical Work</h4>
+                <ul>
+                  <li>Requirement breakdown and trade-offs</li>
+                  <li>CAD iteration and fit checks</li>
+                  <li>Basic calculations supporting design choices</li>
+                </ul>
+              </div>
+              <div class="block">
+                <h4>Outcome</h4>
+                <p>Design proposal + drawings + documented decisions.</p>
+              </div>
+              <div class="block">
+                <h4>Key Learnings</h4>
+                <ul>
+                  <li>Constraints drive good engineering</li>
+                  <li>Clear documentation reduces team friction</li>
+                  <li>Design is a loop, not a line</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card project">
+          <h3>Mechanical Design Assignment — Technical Drawings</h3>
+          <div class="pillrow">
+            <span class="pill">Academic</span>
+            <span class="pill">SolidWorks</span>
+            <span class="pill">Drawings</span>
+          </div>
+          <p>
+            Coursework project focused on mechanical design fundamentals and clean technical drawings.
+          </p>
+
+          <details>
+            <summary>
+              View Case Study
+              <span aria-hidden="true">▾</span>
+            </summary>
+            <div class="case">
+              <div class="block">
+                <h4>Context</h4>
+                <p>University assignment to design a component and deliver proper drawings.</p>
+              </div>
+              <div class="block">
+                <h4>Problem Statement</h4>
+                <p>Produce a manufacturable design with correct dimensions and tolerances.</p>
+              </div>
+              <div class="block">
+                <h4>My Role</h4>
+                <p>Individual work: CAD + drawing pack + brief design justification.</p>
+              </div>
+              <div class="block">
+                <h4>Technical Work</h4>
+                <ul>
+                  <li>Parametric CAD modeling</li>
+                  <li>Drafting views, sections and dimensioning</li>
+                  <li>Basic manufacturability considerations</li>
+                </ul>
+              </div>
+              <div class="block">
+                <h4>Outcome</h4>
+                <p>Drawing pack ready for review/manufacture (course standard).</p>
+              </div>
+              <div class="block">
+                <h4>Key Learnings</h4>
+                <ul>
+                  <li>Drawings are as important as the 3D model</li>
+                  <li>Clarity beats complexity</li>
+                  <li>Tolerances must match function</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title">
+        <div>
+          <h2>Skills</h2>
+          <p>Keep it short, real, and backed by projects.</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card skills">
+          <div class="cols">
+            <div class="col">
+              <h4>Technical</h4>
+              <ul>
+                <li>Mechanical Design</li>
+                <li>Basic Aerodynamics</li>
+                <li>Engineering Analysis (basic)</li>
+              </ul>
+            </div>
+            <div class="col">
+              <h4>Software</h4>
+              <ul>
+                <li>SolidWorks</li>
+                <li>MATLAB (basic)</li>
+                <li>Python (basic)</li>
+              </ul>
+            </div>
+            <div class="col">
+              <h4>Other</h4>
+              <ul>
+                <li>Technical documentation</li>
+                <li>Team collaboration</li>
+                <li>Iterative problem solving</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT + CONTACT -->
+    <section>
+      <div class="grid">
+        <div class="card about" id="about">
+          <h2 style="margin:0 0 8px;">About</h2>
+          <p style="margin:0; color:var(--muted);">
+            Engineering student interested in hands-on projects, design iteration, and applying theory to real
+            engineering problems. This site is a focused portfolio of case studies (role, process, outcome).
+          </p>
+        </div>
+
+        <div class="card contact" id="contact">
+          <h2 style="margin:0 0 8px;">Contact</h2>
+          <p style="margin:0 0 12px; color:var(--muted);">
+            Want to collaborate or discuss a role? Reach out:
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <!-- Replace with real email -->
+            <a class="btn" href="mailto:marco@example.com">Email</a>
+            <a class="btn" href="https://www.linkedin.com/in/marco-dell%E2%80%99orto-394885291/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <!-- Optional: GitHub -->
+            <!-- <a class="btn" href="https://github.com/USERNAME" target="_blank" rel="noreferrer">GitHub</a> -->
+          </div>
+          <p style="margin:12px 0 0; color:var(--muted); font-size:13px;">
+            Tip: add a PDF CV link only if it’s clean and updated.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Marco Dell’Orto • Built as a project-focused portfolio
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
