@@ -77,7 +77,11 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .stat b { display: block; font-size: 32px; letter-spacing: -.02em; line-height: 1.1; }
 .stat span { color: var(--muted); font-size: 14px; }
 
-.article { max-width: 760px; margin: 0 auto; padding-bottom: 80px; }
+.article { max-width: var(--max); margin: 0 auto; padding-bottom: 80px; }
+/* text is kept to a readable column; figures, tables and comparisons use the full width */
+.article > :is(p, h2, h3, ul, .eq, .flow, .refs) {
+  max-width: 760px; margin-left: auto !important; margin-right: auto !important;
+}
 .article h2 { font-size: 28px; letter-spacing: -.015em; margin: 64px 0 16px; }
 .article h2::before { content: ""; display: block; width: 32px; height: 3px; background: var(--accent); margin-bottom: 18px; }
 .article h3 { font-size: 20px; margin: 40px 0 12px; }
@@ -87,21 +91,31 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .eq { font: 15px/1.6 "JetBrains Mono", monospace; background: var(--surface); border: 1px solid var(--line);
   border-left: 3px solid var(--accent); border-radius: 8px; padding: 14px 18px; margin: 0 0 18px; }
 
-figure { margin: 28px 0; }
+figure { margin: 28px auto; max-width: 900px; }
 figure img { border-radius: 10px; border: 1px solid var(--line); background: #fff; margin: 0 auto; }
 figure.dark img { background: var(--dark); border-color: var(--dark); }
 figcaption { font-size: 14px; color: var(--muted); margin-top: 10px; text-align: center; }
-.wide { width: min(1080px, calc(100vw - 48px)); margin-left: 50%; transform: translateX(-50%); }
-.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: center; }
-.pair figure { margin: 0; }
-.compare { margin: 28px 0; }
-.compare .head { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font: 600 13px/1 "JetBrains Mono", monospace;
-  text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 12px; }
-.compare .row-label { font-weight: 600; font-size: 15px; margin: 22px 0 10px; }
+figure.wide { max-width: none; }
 
-.table-wrap { overflow-x: auto; margin: 0 0 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+/* side-by-side images: identical boxes so pairs always line up */
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0; }
+.pair figure { margin: 0; max-width: none; display: flex; flex-direction: column; }
+.pair figure img { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; padding: 8px; }
+.compare { margin: 28px 0; }
+.compare .head { display: none; }
+.compare .pair { margin: 0; }
+.compare figure::before { font: 600 12px/1 "JetBrains Mono", monospace; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; }
+.compare figure:first-child::before { content: "Literature"; }
+.compare figure:last-child::before { content: "CFD"; }
+.compare .row-label { font-weight: 600; font-size: 15px; margin: 28px 0 10px; padding-top: 18px; border-top: 1px solid var(--line); }
+.compare .row-label:first-of-type { border-top: 0; padding-top: 0; }
+
+.table-wrap { overflow-x: auto; margin: 0 auto 24px; max-width: 760px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.table-wrap.wide { max-width: none; }
 table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
-th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: bottom; }
+th { white-space: normal; }
 th { font-weight: 600; background: color-mix(in srgb, var(--line) 45%, transparent); }
 tr:last-child td { border-bottom: 0; }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
@@ -120,9 +134,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 @media (max-width: 720px) {
   body { font-size: 16px; }
   .wrap { padding: 0 16px; }
-  .grid, .pair, .compare .head { grid-template-columns: 1fr; }
-  .compare .head { display: none; }
+  .grid, .pair { grid-template-columns: 1fr; }
   .hero { padding: 64px 0 40px; }
   nav .links a { margin-left: 14px; }
-  .wide { width: calc(100vw - 32px); }
 }
