@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radiator CFD Experimental Validation — Marco Dell'Orto</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="index.html">MARCO DELL’ORTO</a>
+  <div class="links"><a href="index.html#projects">Projects</a></div>
+</div></nav>
+
+<div class="wrap">
+  <header class="p-hero">
+    <p class="eyebrow">Project 04</p>
+    <h1>Experimental Validation of a Motorsport Radiator CFD Model</h1>
+    <p class="sub">Porous media calibration · Thermal validation</p>
+  </header>
+  <div class="cover"><img src="img/image38.webp" alt="Test chamber CAD"></div>
+
+  <div class="stats">
+    <div class="stat"><b>&lt;5%</b><span>Heat rejection error, all points</span></div>
+    <div class="stat"><b>2–7%</b><span>Coolant Δp error</span></div>
+    <div class="stat"><b>5</b><span>operating points validated</span></div>
+    <div class="stat"><b>6.8M</b><span>cells</span></div>
+  </div>
+
+  <article class="article">
+    <h2>Objective</h2>
+    <p>Validate a radiator CFD model against experimental values by designing the test chamber to the University of Bergamo specification and calibrating the core with the porous media and dual stream models.</p>
+
+    <h2>Geometry</h2>
+    <p>The chamber geometry was designed from the 2D drawings provided by the University of Bergamo.</p>
+    <figure><img src="img/image37.webp" alt="2D drawing of test chamber" loading="lazy"><figcaption>Test chamber drawing</figcaption></figure>
+    <figure class="dark"><img src="img/image38.webp" alt="Test chamber CAD" loading="lazy"><figcaption>Test chamber CAD</figcaption></figure>
+    <p>The radiator was supplied by Tatuus and needed geometry preparation to run with the dual stream heat transfer model.</p>
+    <div class="pair wide">
+      <figure class="dark"><img src="img/image39.webp" alt="" loading="lazy"><figcaption>Original radiator</figcaption></figure>
+      <figure class="dark"><img src="img/image40.webp" alt="" loading="lazy"><figcaption>Prepared radiator</figcaption></figure>
+    </div>
+
+    <h2>Data extraction and simulation setup</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Parameter</th><th>Value</th></tr>
+      <tr><td>Air density</td><td>1.184 kg/m³</td></tr>
+      <tr><td>Turbulence model</td><td>k-Epsilon</td></tr>
+      <tr><td>Solver</td><td>RANS</td></tr>
+      <tr><td>Number of cells</td><td>6.8 million</td></tr>
+      <tr><td>y+ target</td><td>&gt; 30</td></tr>
+    </table></div>
+    <p>Refinement groups, as % of base size (15 mm):</p>
+    <div class="table-wrap"><table>
+      <tr><th>Component</th><th>Category</th><th>Details</th><th class="num">Min size (%)</th><th class="num">Target size (%)</th></tr>
+      <tr><td>Tunnel (external surface)</td><td>Group 1</td><td>‘Boccagli’</td><td class="num">7</td><td class="num">25</td></tr>
+      <tr><td></td><td>Group 2</td><td>Chamber, mass outlet, interfaces</td><td class="num">10</td><td class="num">100</td></tr>
+      <tr><td></td><td>Group 3</td><td>Room</td><td class="num">60</td><td class="num">600</td></tr>
+      <tr><td>Radiator (internal)</td><td></td><td>Radiator trays</td><td class="num">15</td><td class="num">1.5</td></tr>
+      <tr><td>Porous regions</td><td>Direct mesh</td><td>Coolant cores, air cores</td><td class="num">10</td><td class="num">100</td></tr>
+      <tr><td>Refinement</td><td>Volumetric</td><td>Flow path refinement</td><td class="num">–</td><td class="num">100</td></tr>
+    </table></div>
+    <p>Prism layer settings:</p>
+    <div class="table-wrap"><table>
+      <tr><th>Details</th><th class="num">Layers</th><th class="num">First layer (mm)</th><th class="num">Total thickness (mm)</th></tr>
+      <tr><td>‘Boccagli’</td><td class="num">12</td><td class="num">0.02</td><td class="num">3.9</td></tr>
+      <tr><td>Radiator trays (internal)</td><td class="num">2</td><td class="num">0.8</td><td class="num">2</td></tr>
+      <tr><td>Chamber, interfaces</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+      <tr><td>Walls, inlet, outlet</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    </table></div>
+
+    <h3>Air side</h3>
+    <p>The radiator technical sheet was used to extract a quadratic fit of pressure drop for both the coolant and air sides. The inertial and viscous coefficients were then computed by dividing the fit coefficients by the radiator thickness:</p>
+    <div class="eq">Inertial coefficient = 2.8075 / 0.04 = 70.1875<br>Viscous coefficient = 17.543 / 0.04 = 438.575</div>
+
+    <h3>Coolant side</h3>
+    <p>The cooling circuit was simulated on its own using the previously validated mesh. Pressure drop and velocity were extracted at the channel boundaries to isolate radiator core losses from circuit and tank losses, so the porous region model could be calibrated correctly.</p>
+    <p>The CFD pressure drop vs velocity for the overall circuit was compared with the experimental curve to calibrate the model. After aligning the simulation with the experimental data, the porous region pressure drop was extracted and plotted against velocity to calculate the porous model coefficients:</p>
+    <div class="eq">Inertial coefficient = 418923 / 0.565 = 741456.64<br>Viscous coefficient = 2502.8 / 0.565 = 4429.73</div>
+    <p>A Q map was also derived from the experimental data, mapping the hot and cold mass flow rates of the heat exchanger to heat loss values.</p>
+
+    <h2>CFD results</h2>
+    <p>Coolant and air side pressure drop monitors converged after 1850 iterations. A further 150 iterations were run and averaged to give the reference value.</p>
+    <figure class="wide"><img src="img/image41.webp" alt="Pressure drop convergence monitors" loading="lazy"></figure>
+    <p>A test simulation gave a linear relation between the face velocity in front of the radiator and the test chamber outlet mass flow rate. A Design Manager study with 5 operating points across the curve was then set up to compare the CFD model with the experimental data.</p>
+
+    <h3>Air side validation</h3>
+    <div class="table-wrap wide"><table>
+      <tr><th class="num">Face velocity (m/s)</th><th class="num">Rad Δp exp (Pa)</th><th class="num">Rad Δp CFD (Pa)</th><th class="num">Diff</th><th class="num">Rad ΔT exp (°C)</th><th class="num">Rad ΔT CFD (°C)</th><th class="num">Diff</th></tr>
+      <tr><td class="num">11.02</td><td class="num">527.09</td><td class="num">553.06</td><td class="num">4.93%</td><td class="num">−29.83</td><td class="num">−24.31</td><td class="num">−18.51%</td></tr>
+      <tr><td class="num">6.94</td><td class="num">254.00</td><td class="num">274.71</td><td class="num">8.15%</td><td class="num">−42.70</td><td class="num">−33.30</td><td class="num">−22.02%</td></tr>
+      <tr><td class="num">6.94</td><td class="num">264.00</td><td class="num">276.07</td><td class="num">4.57%</td><td class="num">−42.50</td><td class="num">−33.75</td><td class="num">−20.60%</td></tr>
+      <tr><td class="num">4.92</td><td class="num">155.42</td><td class="num">168.70</td><td class="num">8.54%</td><td class="num">−45.92</td><td class="num">−38.84</td><td class="num">−15.41%</td></tr>
+      <tr><td class="num">9.05</td><td class="num">388.84</td><td class="num">414.15</td><td class="num">6.51%</td><td class="num">−40.70</td><td class="num">−30.63</td><td class="num">−24.75%</td></tr>
+    </table></div>
+
+    <h3>Coolant side validation</h3>
+    <div class="table-wrap"><table>
+      <tr><th class="num">Coolant ṁ (g/s)</th><th class="num">Δp exp (mbar)</th><th class="num">Δp CFD (mbar)</th><th class="num">Diff</th></tr>
+      <tr><td class="num">961.3</td><td class="num">22.30</td><td class="num">21.15</td><td class="num">−5.16%</td></tr>
+      <tr><td class="num">1438.5</td><td class="num">43.31</td><td class="num">46.02</td><td class="num">6.26%</td></tr>
+      <tr><td class="num">1921.0</td><td class="num">77.79</td><td class="num">80.95</td><td class="num">4.06%</td></tr>
+      <tr><td class="num">2411.1</td><td class="num">123.93</td><td class="num">126.45</td><td class="num">2.03%</td></tr>
+      <tr><td class="num">2729.3</td><td class="num">157.00</td><td class="num">161.37</td><td class="num">2.78%</td></tr>
+    </table></div>
+    <div class="table-wrap wide"><table>
+      <tr><th class="num">Coolant ṁ (g/s)</th><th class="num">ΔT exp (°C)</th><th class="num">ΔT CFD (°C)</th><th class="num">Diff</th><th class="num">Heat rejection exp (kW)</th><th class="num">Heat rejection CFD (kW)</th><th class="num">Diff</th></tr>
+      <tr><td class="num">961.3</td><td class="num">17.34</td><td class="num">16.63</td><td class="num">−4.10%</td><td class="num">69.78</td><td class="num">68.16</td><td class="num">−2.32%</td></tr>
+      <tr><td class="num">1438.5</td><td class="num">10.24</td><td class="num">9.67</td><td class="num">−5.52%</td><td class="num">61.65</td><td class="num">59.61</td><td class="num">−3.32%</td></tr>
+      <tr><td class="num">1921.0</td><td class="num">7.80</td><td class="num">7.35</td><td class="num">−5.79%</td><td class="num">62.60</td><td class="num">60.53</td><td class="num">−3.31%</td></tr>
+      <tr><td class="num">2411.1</td><td class="num">4.93</td><td class="num">4.81</td><td class="num">−2.33%</td><td class="num">49.73</td><td class="num">49.94</td><td class="num">0.43%</td></tr>
+      <tr><td class="num">2729.3</td><td class="num">6.55</td><td class="num">6.10</td><td class="num">−6.88%</td><td class="num">74.85</td><td class="num">71.39</td><td class="num">−4.63%</td></tr>
+    </table></div>
+
+    <h2>Validation and engineering outcome</h2>
+    <p>The CFD model showed good agreement with experimental data for coolant pressure losses and heat rejection. The air side ΔT, however, showed a higher error of 15–25%, highlighting limitations in the current modelling approach.</p>
+    <p>Further work will integrate the radiator model into the F1 model CFD to analyse the effect of thermal management on vehicle drag and overall performance.</p>
+  </article>
+
+  <div class="pager">
+    <a href="radiator-mesh.html"><small>← Previous</small><b>Numerical Analysis of a Radiator Model</b></a>
+    <a href="index.html" style="text-align:right"><small>Back to</small><b>All projects</b></a>
+  </div>
+</div>
+<footer><div class="wrap"><span>© 2026 Marco Dell’Orto</span></div></footer>
+</body>
+</html>

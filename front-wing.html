@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imperial Front Wing CFD Validation — Marco Dell'Orto</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="index.html">MARCO DELL’ORTO</a>
+  <div class="links"><a href="index.html#projects">Projects</a></div>
+</div></nav>
+
+<div class="wrap">
+  <header class="p-hero">
+    <p class="eyebrow">Project 01</p>
+    <h1>CFD Validation of the Imperial Front Wing</h1>
+    <p class="sub">RANS · CFD Validation · PIV comparison</p>
+  </header>
+  <div class="cover light"><img src="img/image18.webp" alt="Cpt=0 isosurface coloured by pressure coefficient"></div>
+
+  <div class="stats">
+    <div class="stat"><b>0.011%</b><span>Cl difference vs benchmark</span></div>
+    <div class="stat"><b>3.25%</b><span>Cd difference vs benchmark</span></div>
+    <div class="stat"><b>30M</b><span>cells (vs 120M reference)</span></div>
+    <div class="stat"><b>5</b><span>PIV planes compared</span></div>
+  </div>
+
+  <article class="article">
+    <h2>Objective</h2>
+    <p>Develop a computationally efficient RANS simulation that captures both qualitatively and quantitatively the flow structures and Cl/Cd of the published benchmark, providing a validated baseline for further external aerodynamic studies.</p>
+
+    <h2>Methodology</h2>
+    <h3>Simulation</h3>
+    <p>The turbulence model compared was k-Omega SST. The flow structure was compared against 5 PIV planes and the total pressure coefficient isosurface (Cpt=0). The table below contains the boundary conditions used for the simulation.</p>
+    <div class="table-wrap"><table>
+      <tr><th>Parameter</th><th>Value</th></tr>
+      <tr><td>Freestream velocity</td><td>25 m/s</td></tr>
+      <tr><td>Air density</td><td>1.20845 kg/m³</td></tr>
+      <tr><td>Turbulence model</td><td>k-Omega SST</td></tr>
+      <tr><td>Solver</td><td>RANS</td></tr>
+      <tr><td>Number of cells</td><td>30 million</td></tr>
+    </table></div>
+
+    <h3>Mesh strategy</h3>
+    <p>Refinement groups with values expressed as % of base size (12 mm):</p>
+    <div class="table-wrap"><table>
+      <tr><th>Component</th><th>Category</th><th>Details</th><th class="num">Min size (%)</th><th class="num">Target size (%)</th></tr>
+      <tr><td>IFW</td><td>Group 1</td><td>Front wing, strut</td><td class="num">4</td><td class="num">20</td></tr>
+      <tr><td></td><td>Group 2</td><td>Nose</td><td class="num">8</td><td class="num">40</td></tr>
+      <tr><td>Wake</td><td>Volumetric refinements</td><td>400 mm offset + bounded shape</td><td class="num">–</td><td class="num">150</td></tr>
+      <tr><td></td><td></td><td>200 mm offset + bounded shape</td><td class="num">–</td><td class="num">100</td></tr>
+      <tr><td></td><td></td><td>100 mm offset + bounded shape</td><td class="num">–</td><td class="num">30</td></tr>
+      <tr><td></td><td></td><td>Ground (Z axis anisotropic)</td><td class="num">–</td><td class="num">600</td></tr>
+    </table></div>
+    <p>Prism layer settings:</p>
+    <div class="table-wrap"><table>
+      <tr><th>Details</th><th class="num">Layers</th><th class="num">First layer (mm)</th><th class="num">Total thickness (mm)</th></tr>
+      <tr><td>Front wing, strut</td><td class="num">18</td><td class="num">0.005</td><td class="num">4.8</td></tr>
+      <tr><td>Nose</td><td class="num">5</td><td class="num">1.5</td><td class="num">10</td></tr>
+      <tr><td>Ground</td><td class="num">5</td><td class="num">1</td><td class="num">10</td></tr>
+      <tr><td>Walls, inlet, outlet</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    </table></div>
+    <p>The front wing was run with a low y+ approach to resolve the viscous sublayer, allowing more accurate modelling of near-wall gradients and accurately resolving the interaction between the wing elements. This was considered important since the near-wall flow strongly affects drag and downforce predictions.</p>
+
+    <h2>Mesh</h2>
+    <figure class="wide"><img src="img/image1.webp" alt="" loading="lazy"><figcaption>Leading edge refinement: 18 prism layers, y₁ = 0.005 mm</figcaption></figure>
+    <figure class="wide"><img src="img/image2.webp" alt="" loading="lazy"><figcaption>Wake refinement</figcaption></figure>
+    <figure class="wide"><img src="img/image3.webp" alt="" loading="lazy"><figcaption>Anisotropic ground refinement and wake refinement</figcaption></figure>
+
+    <h2>Results</h2>
+    <p>Cl and Cd monitors converged after 3000 iterations. A further 500 iterations were run and averaged to extract Cl and Cd.</p>
+    <figure class="wide"><img src="img/image4.webp" alt="Cl and Cd convergence monitors" loading="lazy"></figure>
+    <p>y+ distribution:</p>
+    <div class="pair wide">
+      <figure><img src="img/image5.webp" alt="y+ distribution" loading="lazy"></figure>
+      <figure><img src="img/image6.webp" alt="y+ distribution" loading="lazy"></figure>
+    </div>
+
+    <h3>Downstream flow validation (PIV planes)</h3>
+    <p>Comparison between the 5 PIV planes from literature (PBS) and CFD.</p>
+    <div class="compare wide">
+      <div class="head"><span>Literature</span><span>CFD</span></div>
+      <div class="row-label">PIV Plane 1 (x = −294 mm)</div>
+      <div class="pair"><figure><img src="img/image7.webp" alt="Literature PIV plane 1" loading="lazy"></figure><figure><img src="img/image8.webp" alt="CFD PIV plane 1" loading="lazy"></figure></div>
+      <div class="row-label">PIV Plane 2 (x = −250 mm)</div>
+      <div class="pair"><figure><img src="img/image9.webp" alt="Literature PIV plane 2" loading="lazy"></figure><figure><img src="img/image10.webp" alt="CFD PIV plane 2" loading="lazy"></figure></div>
+      <div class="row-label">PIV Plane 3 (x = −150 mm)</div>
+      <div class="pair"><figure><img src="img/image11.webp" alt="Literature PIV plane 3" loading="lazy"></figure><figure><img src="img/image12.webp" alt="CFD PIV plane 3" loading="lazy"></figure></div>
+      <div class="row-label">PIV Plane 4 (x = −24 mm)</div>
+      <div class="pair"><figure><img src="img/image13.webp" alt="Literature PIV plane 4" loading="lazy"></figure><figure><img src="img/image14.webp" alt="CFD PIV plane 4" loading="lazy"></figure></div>
+      <div class="row-label">PIV Plane 5 (x = 150 mm)</div>
+      <div class="pair"><figure><img src="img/image15.webp" alt="Literature PIV plane 5" loading="lazy"></figure><figure><img src="img/image16.webp" alt="CFD PIV plane 5" loading="lazy"></figure></div>
+    </div>
+    <p>The scale was kept the same. A slightly different colour bar was used due to the lack of information in the analysed paper.</p>
+
+    <h3>Vortex isosurface validation (Cpt=0)</h3>
+    <div class="compare wide">
+      <div class="head"><span>Literature</span><span>CFD</span></div>
+      <div class="pair"><figure><img src="img/image17.webp" alt="Literature Cpt=0 isosurface" loading="lazy"></figure><figure><img src="img/image18.webp" alt="CFD Cpt=0 isosurface" loading="lazy"></figure></div>
+    </div>
+    <p>The major vortex structures were captured well by the 30 million cell model. However, further refinement would be needed to match the accuracy of the literature PIV planes and Cpt=0, which were obtained with a finer mesh (120 million cells).</p>
+
+    <h3>Cl and Cd comparison</h3>
+    <p>The reference surface area used was 0.175 m² (c = 0.25, W(s) = 0.7).</p>
+    <figure><img src="img/image19.webp" alt="Reference FV RANS results table" loading="lazy"><figcaption>Reference values from literature</figcaption></figure>
+    <div class="table-wrap"><table>
+      <tr><th class="num">Cl</th><th class="num">Cl difference</th><th class="num">Cd</th><th class="num">Cd difference</th></tr>
+      <tr><td class="num">−5.6406</td><td class="num">0.011%</td><td class="num">0.597</td><td class="num">3.25%</td></tr>
+    </table></div>
+    <p>The lift and drag coefficients with the 30 million cell mesh were −5.6406 and 0.597. Relative to the reference values, they differ by 0.0006 (0.011%) and 3.25% respectively, showing strong agreement in lift and a slight offset in drag. Given the similar mesh count, y+, refinement sizes and boundary conditions, the drag difference suggests a greater sensitivity of Cd to numerical and modelling assumptions compared to Cl.</p>
+
+    <h2>Engineering outcome</h2>
+    <p>The developed 30 million cell mesh captured the major vortex structures and Cl/Cd in good agreement with the benchmark. Cl and Cd errors of 0.011% and 3.25% respectively were achieved, while reduced accuracy was observed for the PIV planes and the Cpt=0 isosurface. The model will therefore be used as an efficient baseline for further external aerodynamics studies.</p>
+    <h3>What was achieved</h3>
+    <ul>
+      <li>0.011% Cl difference</li>
+      <li>3.25% Cd difference</li>
+      <li>Major vortex structures captured across the 5 PIV planes and Cpt=0</li>
+    </ul>
+
+    <div class="refs">
+      <h3>References</h3>
+      <p>Buscariolo, F. F., et al. (2022). Spectral/hp element simulation of flow past a Formula One front wing: Validation against experiments. <em>Journal of Wind Engineering and Industrial Aerodynamics</em>, 221, 104832. <a href="https://doi.org/10.1016/j.jweia.2021.104832">https://doi.org/10.1016/j.jweia.2021.104832</a></p>
+      <p>O’Sullivan, A. S., Puri, K., &amp; Ferrer, E. (2023). From RANS to LES: Comparison of simulation methodologies for the Imperial Front Wing. <em>AIAA AVIATION Forum 2023</em>. <a href="https://doi.org/10.2514/6.2023-3865">https://doi.org/10.2514/6.2023-3865</a></p>
+    </div>
+  </article>
+
+  <div class="pager">
+    <a href="index.html"><small>← Back</small><b>All projects</b></a>
+    <a href="f1-2026.html" style="text-align:right"><small>Next →</small><b>F1 2026 CAD &amp; Aerodynamic Design</b></a>
+  </div>
+</div>
+<footer><div class="wrap"><span>© 2026 Marco Dell’Orto</span></div></footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>F1 2026 CAD &amp; Aero Design — Marco Dell'Orto</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="index.html">MARCO DELL’ORTO</a>
+  <div class="links"><a href="index.html#projects">Projects</a></div>
+</div></nav>
+
+<div class="wrap">
+  <header class="p-hero">
+    <p class="eyebrow">Project 02</p>
+    <h1>F1 2026 CAD &amp; Aerodynamic Design</h1>
+    <p class="sub">CAD Modelling · CAD to CFD workflow</p>
+  </header>
+  <div class="cover"><img src="img/image20.webp" alt="F1 2026 model, isometric view"></div>
+
+  <article class="article">
+    <h2>CAD architecture</h2>
+    <p>This project developed an FIA-compliant, watertight F1 model and workflow to support aero development.</p>
+    <div class="pair wide">
+      <figure class="dark"><img src="img/image21.webp" alt="" loading="lazy"><figcaption>Side view</figcaption></figure>
+      <figure class="dark"><img src="img/image22.webp" alt="" loading="lazy"><figcaption>Front view</figcaption></figure>
+    </div>
+    <figure class="dark"><img src="img/image23.webp" alt="" loading="lazy"><figcaption>Top view</figcaption></figure>
+    <p>The model was built in CATIA GSD. Every component was designed as a single part before being trimmed together into a final watertight CFD model. This workflow was structured to enable fast geometry iteration and aero analysis.</p>
+    <div class="flow"><span>CATIA GSD</span><i>→</i><span>Single component modelling</span><i>→</i><span>Surface trim (watertight model)</span><i>→</i><span>STAR-CCM+</span></div>
+
+    <h2>Front wing and nose</h2>
+    <p>The front wing manages the flow around the vehicle, with a major focus on pushing the front wheel wake outboard to improve downstream floor load and aero balance.</p>
+    <p>The AoA in the mid-section was backed off to feed better quality flow to the floor intake. A tube vortex generator and a mini-diffuser were designed to seal the low pressure region at the bottom of the endplate and generate additional downforce. The endplates were designed with the top section leaning inwards over the wing, to amplify the high pressure and shed a more powerful clockwise vortex that pushes the upper wheel wake down and out.</p>
+    <div class="pair wide">
+      <figure class="dark"><img src="img/image24.webp" alt="Front wing" loading="lazy"></figure>
+      <figure class="dark"><img src="img/image25.webp" alt="Front wing" loading="lazy"></figure>
+    </div>
+
+    <h2>Floor, diffuser and floor board</h2>
+    <p>The top and bottom of the inlet were designed to aid flow extraction and acceleration into the floor body. Five outwash leading edge elements were fitted, the maximum allowed by the rules, to power the underfloor through strong vortices and outwash the low energy flow coming from upstream.</p>
+    <p>The front two barge board elements were designed with an outwash intent, while the three elements connected in a cascade to the first were made to generate additional load and comply with the RS-Surface rules, keeping some porosity to improve flow extraction.</p>
+    <p>The diffuser has a concave first section and a less steep mid-to-rear section to allow a bigger pressure drop, aiming to keep the flow attached while controlling pressure recovery. The diffuser sidewall has an opened first section which, combined with the downwashing body and sidepods, feeds cleaner, higher energy flow to the diffuser.</p>
+    <div class="pair wide">
+      <figure class="dark"><img src="img/image26.webp" alt="Floor and diffuser" loading="lazy"></figure>
+      <figure class="dark"><img src="img/image27.webp" alt="Floor and diffuser" loading="lazy"></figure>
+    </div>
+
+    <h2>Sidepods and engine cover</h2>
+    <p>The sidepods and engine cover were designed to keep the body as small as possible while leaving realistic space for the PU, transmission, radiators and so on. From an external aero standpoint, the engine cover guides the cockpit losses downstream and exits them under the rear wing, so the low energy flow does not affect its low pressure side.</p>
+    <div class="pair wide">
+      <figure class="dark"><img src="img/image28.webp" alt="Sidepods" loading="lazy"></figure>
+      <figure class="dark"><img src="img/image29.webp" alt="Engine cover" loading="lazy"></figure>
+    </div>
+
+    <h2>Rear wing</h2>
+    <p>The rear wing was designed for maximum downforce. The endplates expand the flow in the rearmost and top sections. This controlled expansion recovers pressure on both the top and bottom surfaces, lowering the pressure delta and weakening the wingtip vortex, which reduces drag. The expansion at the rear of the endplate also helps the diffuser expand the undertray flow to ambient pressure, improving its efficiency.</p>
+    <div class="pair wide">
+      <figure class="dark"><img src="img/image30.webp" alt="Rear wing" loading="lazy"></figure>
+      <figure class="dark"><img src="img/image31.webp" alt="Rear wing" loading="lazy"></figure>
+    </div>
+
+    <h2>CFD trimmed model</h2>
+    <figure><img src="img/image32.webp" alt="Watertight CFD model" loading="lazy"></figure>
+  </article>
+
+  <div class="pager">
+    <a href="front-wing.html"><small>← Previous</small><b>Imperial Front Wing CFD Validation</b></a>
+    <a href="radiator-mesh.html" style="text-align:right"><small>Next →</small><b>Numerical Analysis of a Radiator Model</b></a>
+  </div>
+</div>
+<footer><div class="wrap"><span>© 2026 Marco Dell’Orto</span></div></footer>
+</body>
+</html>
