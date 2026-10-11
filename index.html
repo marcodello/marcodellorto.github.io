@@ -6,54 +6,76 @@
 <title>Marco Dell'Orto — Engineering Portfolio</title>
 <meta name="description" content="Motorsport Engineering undergraduate focused on vehicle aerodynamics, CFD, thermal management and CAD.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="brand" href="index.html">MARCO DELL’ORTO</a>
-  <div class="links"><a href="#projects">Projects</a><a href="#about">About</a></div>
+  <a class="brand" href="index.html">Marco Dell’Orto</a>
+  <div class="links"><a href="#projects">Projects</a></div>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <p class="eyebrow">Portfolio · 2025–2026</p>
+  <p class="eyebrow">Engineering portfolio · 2025–2026</p>
   <h1>Marco Dell’Orto</h1>
   <p class="lead">BEng Motorsport Engineering undergraduate focused on vehicle aerodynamics, CFD, thermal management and CAD.</p>
-  <div class="tags">
-    <span class="tag">STAR-CCM+</span><span class="tag">CATIA GSD</span><span class="tag">RANS CFD</span>
-    <span class="tag">Mesh independence / GCI</span><span class="tag">Porous media</span><span class="tag">MATLAB</span>
-  </div>
+  <p class="skills">STAR-CCM+ · CATIA GSD · RANS CFD · Mesh independence / GCI · Porous media · MATLAB</p>
 </div></header>
 
 <main class="wrap" id="projects">
-  <div class="section-title"><h2>Selected projects</h2><span>05</span></div>
-  <div class="grid">
-    <a class="card" href="front-wing.html">
-      <div class="thumb light"><img src="img/image18.webp" alt="Cpt=0 isosurface of the Imperial Front Wing"></div>
-      <div class="body"><span class="num">01</span><h3>CFD Validation of the Imperial Front Wing</h3><p>RANS · CFD validation · PIV comparison</p></div>
-    </a>
-    <a class="card" href="f1-2026.html">
-      <div class="thumb"><img src="img/image20.webp" alt="F1 2026 CAD model, isometric view"></div>
-      <div class="body"><span class="num">02</span><h3>F1 2026 CAD &amp; Aerodynamic Design</h3><p>CAD modelling · CAD to CFD workflow</p></div>
-    </a>
-    <a class="card" href="radiator-mesh.html">
-      <div class="thumb"><img src="img/image33.webp" alt="Radiator and cooling circuit geometry"></div>
-      <div class="body"><span class="num">03</span><h3>Numerical Analysis of a Motorsport Radiator Model</h3><p>Mesh independence · GCI · Experimental correlation</p></div>
-    </a>
-    <a class="card" href="radiator-validation.html">
-      <div class="thumb"><img src="img/image39.webp" alt="Tatuus radiator CAD"></div>
-      <div class="body"><span class="num">04</span><h3>Experimental Validation of a Motorsport Radiator CFD Model</h3><p>Porous media calibration · Thermal validation</p></div>
-    </a>
-    <div class="card soon">
-      <div class="thumb"><span>In progress</span></div>
-      <div class="body"><span class="num">05</span><h3>Formula Student Rear Wing Design and Full Car Sim</h3><p>Porous media · Fan · MRF · Full car sim</p></div>
-    </div>
-  </div>
+  <div class="section-title"><h2>Projects</h2><span>05</span></div>
+  <ol class="plist">
+    <li><a class="prow" href="front-wing.html">
+      <span class="pnum">01</span>
+      <div class="pbody">
+        <h3>CFD Validation of the Imperial Front Wing</h3>
+        <p class="ptags">RANS · CFD validation · PIV comparison</p>
+        <p class="pres">Cl within 0.011% and Cd within 3.25% of the published benchmark, using a 30M-cell mesh.</p>
+      </div>
+      <div class="pthumb light"><img src="img/image18.webp" alt="Cpt=0 isosurface of the Imperial Front Wing"></div>
+    </a></li>
+    <li><a class="prow" href="f1-2026.html">
+      <span class="pnum">02</span>
+      <div class="pbody">
+        <h3>F1 2026 CAD &amp; Aerodynamic Design</h3>
+        <p class="ptags">CAD modelling · CAD to CFD workflow</p>
+        <p class="pres">FIA-compliant, watertight car model built in CATIA GSD for fast aero iteration in STAR-CCM+.</p>
+      </div>
+      <div class="pthumb"><img src="img/image20.webp" alt="F1 2026 CAD model, isometric view"></div>
+    </a></li>
+    <li><a class="prow" href="radiator-mesh.html">
+      <span class="pnum">03</span>
+      <div class="pbody">
+        <h3>Numerical Analysis of a Motorsport Radiator Model</h3>
+        <p class="ptags">Mesh independence · GCI · Experimental correlation</p>
+        <p class="pres">GCI of 0.5–0.58% on circuit pressure drop, within 3.86% of experimental data.</p>
+      </div>
+      <div class="pthumb"><img src="img/image33.webp" alt="Radiator and cooling circuit geometry"></div>
+    </a></li>
+    <li><a class="prow" href="radiator-validation.html">
+      <span class="pnum">04</span>
+      <div class="pbody">
+        <h3>Experimental Validation of a Motorsport Radiator CFD Model</h3>
+        <p class="ptags">Porous media calibration · Thermal validation</p>
+        <p class="pres">Heat rejection within 5% and coolant pressure drop within 2–7% of experiment across 5 operating points.</p>
+      </div>
+      <div class="pthumb"><img src="img/image39.webp" alt="Tatuus radiator CAD"></div>
+    </a></li>
+    <li><div class="prow soon">
+      <span class="pnum">05</span>
+      <div class="pbody">
+        <h3>Formula Student Rear Wing Design and Full Car Sim</h3>
+        <p class="ptags">Porous media · Fan · MRF · Full car sim</p>
+        <p class="pres">In progress.</p>
+      </div>
+      <div class="pthumb hatch"><span>In progress</span></div>
+    </div></li>
+  </ol>
 </main>
 
-<footer id="about"><div class="wrap">
-  <span>© 2026 Marco Dell’Orto · BEng Motorsport Engineering</span>
-  <span>Aerodynamics · CFD · Thermal management · CAD</span>
+<footer><div class="wrap">
+  <span>© 2026 Marco Dell’Orto</span>
+  <span>BEng Motorsport Engineering</span>
 </div></footer>
 </body>
 </html>
