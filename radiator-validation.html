@@ -49,12 +49,12 @@
       <tr><td>Turbulence model</td><td>k-Epsilon</td></tr>
       <tr><td>Solver</td><td>RANS</td></tr>
       <tr><td>Number of cells</td><td>6.8 million</td></tr>
-      <tr><td>y+ target</td><td>&gt; 30</td></tr>
+      <tr><td>y+</td><td>Mixed: &lt; 1 on the nozzles, &gt; 30 elsewhere</td></tr>
     </table></div>
     <p>Refinement groups, as % of base size (15 mm):</p>
     <div class="table-wrap"><table>
       <tr><th>Component</th><th>Category</th><th>Details</th><th class="num">Min size (%)</th><th class="num">Target size (%)</th></tr>
-      <tr><td>Tunnel (external surface)</td><td>Group 1</td><td>‘Boccagli’</td><td class="num">7</td><td class="num">25</td></tr>
+      <tr><td>Tunnel (external surface)</td><td>Group 1</td><td>Nozzles</td><td class="num">7</td><td class="num">25</td></tr>
       <tr><td></td><td>Group 2</td><td>Chamber, mass outlet, interfaces</td><td class="num">10</td><td class="num">100</td></tr>
       <tr><td></td><td>Group 3</td><td>Room</td><td class="num">60</td><td class="num">600</td></tr>
       <tr><td>Radiator (internal)</td><td></td><td>Radiator trays</td><td class="num">15</td><td class="num">1.5</td></tr>
@@ -64,7 +64,7 @@
     <p>Prism layer settings:</p>
     <div class="table-wrap"><table>
       <tr><th>Details</th><th class="num">Layers</th><th class="num">First layer (mm)</th><th class="num">Total thickness (mm)</th></tr>
-      <tr><td>‘Boccagli’</td><td class="num">12</td><td class="num">0.02</td><td class="num">3.9</td></tr>
+      <tr><td>Nozzles</td><td class="num">12</td><td class="num">0.02</td><td class="num">3.9</td></tr>
       <tr><td>Radiator trays (internal)</td><td class="num">2</td><td class="num">0.8</td><td class="num">2</td></tr>
       <tr><td>Chamber, interfaces</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
       <tr><td>Walls, inlet, outlet</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
